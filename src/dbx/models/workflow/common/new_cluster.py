@@ -9,7 +9,7 @@ class AutoScale(FlexibleModel):
     min_workers: int
     max_workers: int
 
-    @root_validator()
+    @model_validator(mode="before")
     def _validate(cls, values):  # noqa
         assert values["max_workers"] > values["min_workers"], ValueError(
             f"""
